@@ -15,6 +15,7 @@ export class ScreenComponent implements OnInit {
   snake: BodyComponent;
   food: FoodComponent;
   score: number;
+  winner: any;
 
   constructor() {
   this.snake = new BodyComponent();
@@ -77,7 +78,7 @@ export class ScreenComponent implements OnInit {
       console.log(head.x , head.y , this.snake.tail[i].x , this.snake.tail[i].y)
       if(head.x == this.snake.tail[i].x && head.y == this.snake.tail[i].y)
       {
-        console.log("i am here");
+        this.winner = true;
         clearTimeout(this.timeout);
       }
     }
@@ -110,27 +111,33 @@ export class ScreenComponent implements OnInit {
 
   draw(){
 
-    this.createRect(this.food.x, this.food.y , 5 , 5, 'red');
+    this.createRect(this.food.x, this.food.y , 5 , 5, 'red' , false);
 
     for (let i = 0 ; i < this.snake.tail.length ; i++) {
 
       this.createRect(this.snake.tail[i].x,
         this.snake.tail[i].y,
         this.snake.size,
-        this.snake.size, 'green');
+        this.snake.size, 'green' , true);
     }
 
     this.canvasContext.font = '20px Arial'
     this.canvasContext.fillStyle = "#00FF42";
   }
 
-  createRect(x:number,y:number,width:number,height:number,color:any){
+  createRect(x:number,y:number,width:number,height:number,color:any , isSnake:boolean){
 
-    this.canvasContext.fillStyle = color;
-
-    this.canvasContext.fillRect(x,y,width,height);
-
-
+    if(!isSnake){
+      this.canvasContext.beginPath();
+      this.canvasContext.fillStyle = color;
+      this.canvasContext.fillRect(x,y,width,height);
+    }
+    else
+    {
+      this.canvasContext.fillStyle = color;
+      this.canvasContext.border = "1px solid black"
+      this.canvasContext.fillRect(x,y,width,height);
+    }
 
   }
 

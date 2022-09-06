@@ -1,15 +1,25 @@
+<div class="container">
+  <div class="player">
 <h1>Current Player: {{player}}</h1>
-
+  </div>
+  <div class="start">
 <button (click)="newGame()"> Start New Game</button>
-<h2 *ngIf="winner">
+  </div>
+
+  <div class="winner">
+<h2 class="winner" *ngIf="winner">
   Player {{winner}} won the game !!
 </h2>
-
+  </div>
+  <div class="screen">
 <main>
   <app-tictac
     *ngFor="let val of [0,1,2,3,4,5,6,7,8] ; let i = index"
     (click)="makeMove(i)">
 
   </app-tictac>
-
 </main>
+  </div>
+
+
+</div>

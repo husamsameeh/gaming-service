@@ -11,6 +11,9 @@ import { ScreenComponent } from './snake/screen/screen.component';
 import { BodyComponent } from './snake/body/body.component';
 import { FoodComponent } from './snake/food/food.component';
 
+import {AppRoutingModule} from "./app-routing.module";
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,10 +24,12 @@ import { FoodComponent } from './snake/food/food.component';
     BoardComponent,
     ScreenComponent,
     BodyComponent,
-    FoodComponent
+    FoodComponent,
+    NavBarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
